@@ -1,0 +1,8 @@
+export const MAIN_ROUTE = '/main'
+export const SERVICES_ROUTE = '/services'
+export const DOWNLOAD_ROUTE = '/download'
+export const CERTIFICATES_ROUTE = '/certificates'
+export const CONTACTS_ROUTE = '/contacts'
+export const LOGIN_ROUTE = '/login'
+export const ADMIN_ROUTE = '/admin'
+export const ACCOUNT_ROUTE = '/account'
