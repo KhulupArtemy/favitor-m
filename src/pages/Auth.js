@@ -29,10 +29,10 @@ const Auth = observer(() => {
             style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className="p-5">
-                <h2 className="m-auto">Авторизация</h2>
-                <Form className="d-flex flex-column">
+                <h1 className="m-auto fw-normal">Авторизация</h1>
+                <Form className="d-flex flex-column lead">
                     <Form.Label
-                        className="mt-3"
+                        className="mt-4"
                     >
                         Введите логин
                     </Form.Label>
@@ -42,7 +42,7 @@ const Auth = observer(() => {
                         onChange={e => setUserLogin(e.target.value)}
                     />
                     <Form.Label
-                        className="mt-3"
+                        className="mt-4"
                     >
                         Введите пароль
                     </Form.Label>
@@ -53,7 +53,7 @@ const Auth = observer(() => {
                         type="password"
                     />
                     <Button
-                        className="mt-3"
+                        className="mt-4"
                         variant={"outline-dark"}
                         onClick={signIn}
                     >

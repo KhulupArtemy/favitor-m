@@ -31,7 +31,7 @@ const Downloads = observer(() => {
     return (
         <Container>
             <div className="mt-4 text-center">
-                <h2>{item.items.find(item_ => String(item_.id) === itemId) ? item.items.find(item_ => String(item_.id) === itemId).title : ''}</h2>
+                <h1 className="fw-normal">{item.items.find(item_ => String(item_.id) === itemId) ? item.items.find(item_ => String(item_.id) === itemId).title : ''}</h1>
             </div>
             {user.isAuth
                 ? user.userInfo.userRole === 'ADMIN'
@@ -39,14 +39,14 @@ const Downloads = observer(() => {
                     <div className="d-flex flex-column">
                         <Button
                             variant={"outline-dark"}
-                            className="mt-3 p-2"
+                            className="mt-4 p-2"
                             onClick={() => setCreateFirstVisible(true)}
                         >
                             Добавить строку в начало
                         </Button>
                         <Button
                             variant={"outline-dark"}
-                            className="mt-3 p-2"
+                            className="mt-4 p-2"
                             onClick={() => setCreateLastVisible(true)}
                         >
                             Добавить строку в конец
@@ -54,9 +54,9 @@ const Downloads = observer(() => {
                     </div>
                     : ''
                 :
-                <p>Авторизуйтесь на сайте чтобы скачивать программы</p>
+                <p className="mt-4 lead">Авторизуйтесь на сайте чтобы скачивать программы</p>
             }
-            <Table className="mt-3" responsive striped bordered>
+            <Table className="mt-4 lead" responsive striped bordered>
                 <thead>
                 {user.isAuth && user.userInfo.userRole === 'ADMIN' && rows.length
                     ?

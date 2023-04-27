@@ -19,42 +19,42 @@ const AdminPage = () => {
         <Container className="d-flex flex-column">
             <Button
                 variant={"outline-dark"}
-                className="mt-3 p-2"
+                className="mt-4 p-2"
                 onClick={() => setCreateFirstVisible(true)}
             >
                 Добавить элемент списка в начало
             </Button>
             <Button
                 variant={"outline-dark"}
-                className="mt-3 p-2"
+                className="mt-4 p-2"
                 onClick={() => setCreateLastVisible(true)}
             >
                 Добавить элемент списка в конец
             </Button>
             <Button
                 variant={"outline-dark"}
-                className="mt-3 p-2"
+                className="mt-4 p-2"
                 onClick={() => setCreateAfterVisible(true)}
             >
                 Добавить элемент списка после выбранного элемента
             </Button>
             <Button
                 variant={"outline-dark"}
-                className="mt-3 p-2"
+                className="mt-4 p-2"
                 onClick={() => setUpdateOneVisible(true)}
             >
                 Изменить элемент списка
             </Button>
             <Button
                 variant={"outline-dark"}
-                className="mt-3 p-2"
+                className="mt-4 p-2"
                 onClick={() => setDeleteOneVisible(true)}
             >
                 Удалить элемент списка
             </Button>
             <Button
                 variant={"outline-dark"}
-                className="mt-3 p-2"
+                className="mt-4 p-2"
                 onClick={() => setCreateAccountVisible(true)}
             >
                 Создать аккаунт
