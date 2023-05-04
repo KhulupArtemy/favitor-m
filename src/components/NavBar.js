@@ -2,7 +2,8 @@ import React, {useContext, useEffect} from 'react';
 import {
     ACCOUNT_ROUTE, ADMIN_ROUTE,
     CERTIFICATES_ROUTE,
-    CONTACTS_ROUTE, DOWNLOAD_ROUTE,
+    CONTACTS_ROUTE,
+    PROGRAMS_ROUTE,
     LOGIN_ROUTE,
     MAIN_ROUTE,
     SERVICES_ROUTE
@@ -11,15 +12,15 @@ import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import {fetchItems} from "../http/itemAPI";
+import {fetchCategories} from "../http/programCategoryAPI";
 
 const NavBar = observer(() => {
-    const {user, item} = useContext(Context)
+    const {user, categories} = useContext(Context)
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetchItems().then(data => item.setItems(data))
-    }, [item])
+        fetchCategories().then(data => categories.setProgramCategories(data))
+    }, [categories])
 
     const logOut = () => {
         localStorage.clear()
@@ -47,13 +48,13 @@ const NavBar = observer(() => {
                                 >
                                     Услуги
                                 </Nav.Link>
-                                <NavDropdown title="Скачать" id="basic-nav-dropdown">
-                                    {Object(item.items.map(item_ =>
+                                <NavDropdown title="Наши программы" id="basic-nav-dropdown">
+                                    {Object(categories.programCategories.map(category =>
                                         <NavDropdown.Item
-                                            key={item_.id}
-                                            onClick={() => navigate(DOWNLOAD_ROUTE + '/' + item_.id)}
+                                            key={category.id}
+                                            onClick={() => navigate(PROGRAMS_ROUTE + '/' + category.id)}
                                         >
-                                            {item_.title}
+                                            {category.nameCategory}
                                         </NavDropdown.Item>
                                     ))}
                                 </NavDropdown>
@@ -94,13 +95,13 @@ const NavBar = observer(() => {
                                 >
                                     Услуги
                                 </Nav.Link>
-                                <NavDropdown title="Скачать" id="basic-nav-dropdown">
-                                    {Object(item.items.map(item_ =>
+                                <NavDropdown title="Наши программы" id="basic-nav-dropdown">
+                                    {Object(categories.programCategories.map(category =>
                                         <NavDropdown.Item
-                                            key={item_.id}
-                                            onClick={() => navigate(DOWNLOAD_ROUTE + '/' + item_.id)}
+                                            key={category.id}
+                                            onClick={() => navigate(PROGRAMS_ROUTE + '/' + category.id)}
                                         >
-                                            {item_.title}
+                                            {category.nameCategory}
                                         </NavDropdown.Item>
                                     ))}
                                 </NavDropdown>

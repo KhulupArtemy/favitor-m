@@ -1,56 +1,58 @@
 import React, {useState} from 'react';
 import {Button, Container} from "react-bootstrap";
-import CreateFirstItem from "../components/modals/CreateFirstItem";
-import CreateLastItem from "../components/modals/CreateLastItem";
-import CreateAfterItem from "../components/modals/CreateAfterItem";
-import UpdateOneItem from "../components/modals/UpdateOneItem";
-import DeleteOneItem from "../components/modals/DeleteOneItem";
+import CreateFirstCategory from "../components/modals/CreateFirstCategory";
+import CreateLastCategory from "../components/modals/CreateLastCategory";
+import CreateAfterCategory from "../components/modals/CreateAfterCategory";
+import UpdateOneCategory from "../components/modals/UpdateOneCategory";
+import DeleteOneCategory from "../components/modals/DeleteOneCategory";
 import CreateAccount from "../components/modals/CreateAccount";
+import CreateCalculationParameters from "../components/modals/CreateCalculationParameters";
 
 const AdminPage = () => {
-    const [createFirstVisible, setCreateFirstVisible] = useState(false)
-    const [createLastVisible, setCreateLastVisible] = useState(false)
-    const [createAfterVisible, setCreateAfterVisible] = useState(false)
-    const [updateOneVisible, setUpdateOneVisible] = useState(false)
-    const [deleteOneVisible, setDeleteOneVisible] = useState(false)
+    const [createFirstCategoryVisible, setCreateFirstCategoryVisible] = useState(false)
+    const [createLastCategoryVisible, setCreateLastCategoryVisible] = useState(false)
+    const [createAfterCategoryVisible, setCreateAfterCategoryVisible] = useState(false)
+    const [updateOneCategoryVisible, setUpdateOneCategoryVisible] = useState(false)
+    const [deleteOneCategoryVisible, setDeleteOneCategoryVisible] = useState(false)
     const [createAccountVisible, setCreateAccountVisible] = useState(false)
+    const [createCalculationParametersVisible, setCreateCalculationParametersVisible] = useState(false)
 
     return (
         <Container className="d-flex flex-column">
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
-                onClick={() => setCreateFirstVisible(true)}
+                onClick={() => setCreateFirstCategoryVisible(true)}
             >
-                Добавить элемент списка в начало
+                Добавить категорию в начало выпадающего списка
             </Button>
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
-                onClick={() => setCreateLastVisible(true)}
+                onClick={() => setCreateLastCategoryVisible(true)}
             >
-                Добавить элемент списка в конец
+                Добавить категорию в конец выпадающего списка
             </Button>
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
-                onClick={() => setCreateAfterVisible(true)}
+                onClick={() => setCreateAfterCategoryVisible(true)}
             >
-                Добавить элемент списка после выбранного элемента
+                Добавить категорию после выбранной категории выпадающего списка
             </Button>
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
-                onClick={() => setUpdateOneVisible(true)}
+                onClick={() => setUpdateOneCategoryVisible(true)}
             >
-                Изменить элемент списка
+                Изменить категорию в выпадающем списке
             </Button>
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
-                onClick={() => setDeleteOneVisible(true)}
+                onClick={() => setDeleteOneCategoryVisible(true)}
             >
-                Удалить элемент списка
+                Удалить категорию из выпадающего списка
             </Button>
             <Button
                 variant={"outline-dark"}
@@ -59,12 +61,41 @@ const AdminPage = () => {
             >
                 Создать аккаунт
             </Button>
-            <CreateFirstItem show={createFirstVisible} onHide={() => setCreateFirstVisible(false)}/>
-            <CreateLastItem show={createLastVisible} onHide={() => setCreateLastVisible(false)}/>
-            <CreateAfterItem show={createAfterVisible} onHide={() => setCreateAfterVisible(false)}/>
-            <UpdateOneItem show={updateOneVisible} onHide={() => setUpdateOneVisible(false)}/>
-            <DeleteOneItem show={deleteOneVisible} onHide={() => setDeleteOneVisible(false)}/>
-            <CreateAccount show={createAccountVisible} onHide={() => setCreateAccountVisible(false)}/>
+            <Button
+                variant={"outline-dark"}
+                className="mt-4 p-2"
+                onClick={() => setCreateCalculationParametersVisible(true)}
+            >
+                Добавить расчетные параметры
+            </Button>
+            <CreateFirstCategory
+                show={createFirstCategoryVisible}
+                onHide={() => setCreateFirstCategoryVisible(false)}
+            />
+            <CreateLastCategory
+                show={createLastCategoryVisible}
+                onHide={() => setCreateLastCategoryVisible(false)}
+            />
+            <CreateAfterCategory
+                show={createAfterCategoryVisible}
+                onHide={() => setCreateAfterCategoryVisible(false)}
+            />
+            <UpdateOneCategory
+                show={updateOneCategoryVisible}
+                onHide={() => setUpdateOneCategoryVisible(false)}
+            />
+            <DeleteOneCategory
+                show={deleteOneCategoryVisible}
+                onHide={() => setDeleteOneCategoryVisible(false)}
+            />
+            <CreateAccount 
+                show={createAccountVisible}
+                onHide={() => setCreateAccountVisible(false)}
+            />
+            <CreateCalculationParameters
+                show={createCalculationParametersVisible}
+                onHide={() => setCreateCalculationParametersVisible(false)}
+            />
         </Container>
     );
 };

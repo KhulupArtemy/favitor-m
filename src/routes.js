@@ -3,7 +3,7 @@ import {
     ADMIN_ROUTE,
     CERTIFICATES_ROUTE,
     CONTACTS_ROUTE,
-    DOWNLOAD_ROUTE,
+    PROGRAMS_ROUTE,
     LOGIN_ROUTE,
     MAIN_ROUTE,
     SERVICES_ROUTE
@@ -14,7 +14,7 @@ import Services from "./pages/Services";
 import Certificates from "./pages/Certificates";
 import Contacts from "./pages/Contacts";
 import Auth from "./pages/Auth";
-import Downloads from "./pages/Downloads";
+import Programs from "./pages/Programs";
 import AdminPage from "./pages/AdminPage";
 
 export const authRoutes = [
@@ -38,8 +38,8 @@ export const publicRoutes = [
         Component: Services
     },
     {
-        path: DOWNLOAD_ROUTE + '/:itemId',
-        Component: Downloads
+        path: PROGRAMS_ROUTE + '/:programCategoryId',
+        Component: Programs
     },
     {
         path: CERTIFICATES_ROUTE,
