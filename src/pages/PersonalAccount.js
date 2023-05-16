@@ -1,35 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {Container, Table} from "react-bootstrap";
-import {fetchCalculationParameters} from "../http/userAPI";
 import GetKey from "../components/modals/GetKey";
-//const ffi = require('ffi-napi')
+import {fetchUserCalculationParameters} from "../http/calculationParameterAPI";
 
 const PersonalAccount = () => {
     const [calculationParameters, setCalculationParameters] = useState([])
 
     const [getKeyVisible, setGetKeyVisible] = useState(false)
-    const [registrationKey, setRegistrationKey] = useState('')
 
-    const getRegistrationKey = () => {
-        /*
-        const snrkLib = new ffi.Library('./dll/snrkLibrary', {
-            'GetRKValue': [
-                'string', [
-                    'string',
-                    'string',
-                    'string',
-                    'string',
-                    'string'
-                ]
-            ],
-        })
-        //setRegistrationKey(String(7 * 1000000000000000))
-        setGetKeyVisible(true)
-        */
-    }
+    const [softwareNumber, setSoftwareNumber] = useState('')
+    const [userId, setUserId] = useState('')
+    const [workstationsNumber, setWorkstationsNumber] = useState('')
+    const [keyExpirationDate, setKeyExpirationDate] = useState('')
 
     useEffect(() => {
-        fetchCalculationParameters().then(data => setCalculationParameters(data))
+        fetchUserCalculationParameters().then(data => setCalculationParameters(data))
     }, [])
 
     return (
@@ -75,7 +60,13 @@ const PersonalAccount = () => {
                         <td>
                             <div
                                 style={{cursor: "pointer"}}
-                                onClick={() => getRegistrationKey()}
+                                onClick={() => {
+                                    setSoftwareNumber(parameter.softwareNumber)
+                                    setUserId(parameter.userId)
+                                    setWorkstationsNumber(parameter.workstationsNumber)
+                                    setKeyExpirationDate(new Date(parameter.keyExpirationDate).toLocaleDateString())
+                                    setGetKeyVisible(true)
+                                }}
                             >
                                 Получить регистрационный ключ
                             </div>
@@ -87,7 +78,10 @@ const PersonalAccount = () => {
             <GetKey
                 show={getKeyVisible}
                 onHide={() => setGetKeyVisible(false)}
-                registrationKey={registrationKey}
+                softwareNumber={softwareNumber}
+                userId={userId}
+                workstationsNumber={workstationsNumber}
+                keyExpirationDate={keyExpirationDate}
             />
         </Container>
     );

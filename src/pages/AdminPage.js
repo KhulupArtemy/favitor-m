@@ -5,20 +5,33 @@ import CreateLastCategory from "../components/modals/CreateLastCategory";
 import CreateAfterCategory from "../components/modals/CreateAfterCategory";
 import UpdateOneCategory from "../components/modals/UpdateOneCategory";
 import DeleteOneCategory from "../components/modals/DeleteOneCategory";
-import CreateAccount from "../components/modals/CreateAccount";
+import CreateUserAccount from "../components/modals/CreateUserAccount";
 import CreateCalculationParameters from "../components/modals/CreateCalculationParameters";
+import {CALCULATION_PARAMETERS_ROUTE} from "../utils/consts";
+import {useNavigate} from "react-router-dom";
+import UpdateUserLogin from "../components/modals/UpdateUserLogin";
+import DeleteUserAccount from "../components/modals/DeleteUserAccount";
 
 const AdminPage = () => {
+    const navigate = useNavigate()
+
     const [createFirstCategoryVisible, setCreateFirstCategoryVisible] = useState(false)
     const [createLastCategoryVisible, setCreateLastCategoryVisible] = useState(false)
     const [createAfterCategoryVisible, setCreateAfterCategoryVisible] = useState(false)
     const [updateOneCategoryVisible, setUpdateOneCategoryVisible] = useState(false)
     const [deleteOneCategoryVisible, setDeleteOneCategoryVisible] = useState(false)
     const [createAccountVisible, setCreateAccountVisible] = useState(false)
+    const [updateUserLoginVisible, setUpdateUserLoginVisible] = useState(false)
+    const [deleteUserLoginVisible, setDeleteUserLoginVisible] = useState(false)
     const [createCalculationParametersVisible, setCreateCalculationParametersVisible] = useState(false)
 
     return (
         <Container className="d-flex flex-column">
+            <div className="mt-4 text-center">
+                <h1 className="fw-normal">Панель администратора</h1>
+            </div>
+            <hr className="my-5"/>
+            <h1 className="fw-light text-center">Редактирование выпадающего списка с категориями ПО</h1>
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
@@ -54,6 +67,8 @@ const AdminPage = () => {
             >
                 Удалить категорию из выпадающего списка
             </Button>
+            <hr className="my-5"/>
+            <h1 className="fw-light text-center">Редактирование аккаунтов пользователей</h1>
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
@@ -64,10 +79,34 @@ const AdminPage = () => {
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
+                onClick={() => setUpdateUserLoginVisible(true)}
+            >
+                Изменить логин пользователя
+            </Button>
+            <Button
+                variant={"outline-dark"}
+                className="mt-4 p-2"
+                onClick={() => setDeleteUserLoginVisible(true)}
+            >
+                Удалить аккаунт
+            </Button>
+            <hr className="my-5"/>
+            <h1 className="fw-light text-center">Редактирование расчетных параметров</h1>
+            <Button
+                variant={"outline-dark"}
+                className="mt-4 p-2"
                 onClick={() => setCreateCalculationParametersVisible(true)}
             >
                 Добавить расчетные параметры
             </Button>
+            <Button
+                variant={"outline-dark"}
+                className="mt-4 p-2"
+                onClick={() => navigate(CALCULATION_PARAMETERS_ROUTE)}
+            >
+                Редактировать расчетные параметры пользователей
+            </Button>
+            <hr className="my-5"/>
             <CreateFirstCategory
                 show={createFirstCategoryVisible}
                 onHide={() => setCreateFirstCategoryVisible(false)}
@@ -88,9 +127,17 @@ const AdminPage = () => {
                 show={deleteOneCategoryVisible}
                 onHide={() => setDeleteOneCategoryVisible(false)}
             />
-            <CreateAccount 
+            <CreateUserAccount
                 show={createAccountVisible}
                 onHide={() => setCreateAccountVisible(false)}
+            />
+            <UpdateUserLogin
+                show={updateUserLoginVisible}
+                onHide={() => setUpdateUserLoginVisible(false)}
+            />
+            <DeleteUserAccount
+                show={deleteUserLoginVisible}
+                onHide={() => setDeleteUserLoginVisible(false)}
             />
             <CreateCalculationParameters
                 show={createCalculationParametersVisible}

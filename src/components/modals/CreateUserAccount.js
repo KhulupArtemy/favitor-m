@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
-import {registration} from "../../http/userAPI";
+import {createUserAccount} from "../../http/userAPI";
 
-const CreateAccount = ({show, onHide}) => {
+const CreateUserAccount = ({show, onHide}) => {
     const [userLogin, setUserLogin] = useState('')
     const [userPassword, setUserPassword] = useState('')
 
     const registrationUser = async () => {
         try {
-            await registration(userLogin, userPassword).then(data => alert(data))
+            await createUserAccount(userLogin, userPassword).then(data => alert(data))
             setUserLogin('')
             setUserPassword('')
             onHide()
@@ -54,4 +54,4 @@ const CreateAccount = ({show, onHide}) => {
     );
 };
 
-export default CreateAccount;
+export default CreateUserAccount;

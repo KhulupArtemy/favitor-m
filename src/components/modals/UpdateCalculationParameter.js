@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
-import {fetchUserLogins} from "../../http/userAPI";
-import {createCalculationParameters} from "../../http/calculationParameterAPI";
+import {updateCalculationParameter} from "../../http/calculationParameterAPI";
 
-const CreateCalculationParameters = ({show, onHide}) => {
-    const [logins, setLogins] = useState([])
-
-    const [userLogin, setUserLogin] = useState('')
+const UpdateCalculationParameter = ({show, onHide, id, eldestCalculationParameterInformation}) => {
     const [softwareNumber, setSoftwareNumber] = useState('')
     const [softwareName, setSoftwareName] = useState('')
     const [workstationsNumber, setWorkstationsNumber] = useState('')
@@ -14,25 +10,16 @@ const CreateCalculationParameters = ({show, onHide}) => {
     const [keyExpirationDate, setKeyExpirationDate] = useState('')
 
     useEffect(() => {
-        fetchUserLogins().then(data => setLogins(data))
-    }, [show])
+        setSoftwareNumber(eldestCalculationParameterInformation?.softwareNumber)
+        setSoftwareName(eldestCalculationParameterInformation?.softwareName)
+        setWorkstationsNumber(eldestCalculationParameterInformation?.workstationsNumber)
+        setDownloadLink(eldestCalculationParameterInformation?.downloadLink)
+        setKeyExpirationDate(eldestCalculationParameterInformation?.keyExpirationDate)
+    }, [eldestCalculationParameterInformation])
 
-    const addCalculationParameters = async () => {
+    const updateParameter = async () => {
         try {
-            await createCalculationParameters({
-                userLogin,
-                softwareNumber,
-                softwareName,
-                workstationsNumber,
-                downloadLink,
-                keyExpirationDate
-            }).then(data => alert(data))
-            setUserLogin('')
-            setSoftwareNumber('')
-            setSoftwareName('')
-            setWorkstationsNumber('')
-            setKeyExpirationDate('')
-            setDownloadLink('')
+            await updateCalculationParameter({id, softwareNumber, softwareName, workstationsNumber, downloadLink, keyExpirationDate}).then(data => alert(data))
             onHide()
         } catch (e) {
             alert(e.response.data.message)
@@ -48,44 +35,32 @@ const CreateCalculationParameters = ({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Добавить рассчетные параметры
+                    Изменение информации о расчетных параметрах
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Label>Выберите логин</Form.Label>
-                    <Form.Control
-                        list="logins"
-                        value={userLogin}
-                        onChange={e => setUserLogin(e.target.value)}
-                        placeholder="Поле для выбора логина"
-                    />
-                    <datalist id="logins">
-                        {Object(logins.map(login =>
-                            <option key={login.userLogin} value={login.userLogin}></option>
-                        ))}
-                    </datalist>
-                    <Form.Label className="mt-3">Введите номер программного обеспечения</Form.Label>
+                    <Form.Label className="mt-3">Введите новый номер программного обеспечения</Form.Label>
                     <Form.Control
                         value={softwareNumber}
                         onChange={e => e.target.value < 1 ? setSoftwareNumber('1') : setSoftwareNumber(e.target.value)}
                         placeholder="Поле для ввода номера"
                         type="number"
                     />
-                    <Form.Label className="mt-3">Введите название программного обеспечения</Form.Label>
+                    <Form.Label className="mt-3">Введите новое название программного обеспечения</Form.Label>
                     <Form.Control
                         value={softwareName}
                         onChange={e => setSoftwareName(e.target.value)}
                         placeholder="Поле для ввода названия"
                     />
-                    <Form.Label className="mt-3">Введите количество АРМ</Form.Label>
+                    <Form.Label className="mt-3">Введите новое количество АРМ</Form.Label>
                     <Form.Control
                         value={workstationsNumber}
                         onChange={e => e.target.value < 1 ? setWorkstationsNumber('1') : setWorkstationsNumber(e.target.value)}
                         placeholder="Поле для ввода количества АРМ"
                         type="number"
                     />
-                    <Form.Label className="mt-3">Выберите дату окончания</Form.Label>
+                    <Form.Label className="mt-3">Выберите новую дату окончания</Form.Label>
                     <Form.Control
                         value={keyExpirationDate}
                         onChange={e => setKeyExpirationDate(e.target.value)}
@@ -93,7 +68,7 @@ const CreateCalculationParameters = ({show, onHide}) => {
                         type="date"
                         min={new Date().toISOString().substr(0, 10)}
                     />
-                    <Form.Label className="mt-3">Вставьте ссылку на установщик</Form.Label>
+                    <Form.Label className="mt-3">Вставьте новую ссылку на установщик</Form.Label>
                     <Form.Control
                         value={downloadLink}
                         onChange={e => setDownloadLink(e.target.value)}
@@ -102,11 +77,11 @@ const CreateCalculationParameters = ({show, onHide}) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="outline-success" onClick={addCalculationParameters}>Добавить</Button>
+                <Button variant="outline-success" onClick={updateParameter}>Изменить</Button>
                 <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
             </Modal.Footer>
         </Modal>
     );
 };
 
-export default CreateCalculationParameters;
+export default UpdateCalculationParameter;

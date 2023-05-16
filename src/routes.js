@@ -6,7 +6,7 @@ import {
     PROGRAMS_ROUTE,
     LOGIN_ROUTE,
     MAIN_ROUTE,
-    SERVICES_ROUTE
+    SERVICES_ROUTE, CALCULATION_PARAMETERS_ROUTE
 } from "./utils/consts";
 import PersonalAccount from "./pages/PersonalAccount";
 import Main from "./pages/Main";
@@ -16,6 +16,7 @@ import Contacts from "./pages/Contacts";
 import Auth from "./pages/Auth";
 import Programs from "./pages/Programs";
 import AdminPage from "./pages/AdminPage";
+import CalculationParameters from "./pages/CalculationParameters";
 
 export const authRoutes = [
     {
@@ -25,6 +26,10 @@ export const authRoutes = [
     {
         path: ACCOUNT_ROUTE,
         Component: PersonalAccount
+    },
+    {
+        path: CALCULATION_PARAMETERS_ROUTE,
+        Component: CalculationParameters
     }
 ]
 
