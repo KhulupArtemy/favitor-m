@@ -77,7 +77,6 @@ const CalculationParameters = () => {
                 {calculationParameters.length
                     ?
                     <tr>
-                        <th>№</th>
                         <th>Логин пользователя</th>
                         <th>Наименование программного продукта</th>
                         <th>Количество АРМ</th>
@@ -94,7 +93,6 @@ const CalculationParameters = () => {
                 <tbody>
                 {calculationParameters.map(parameter =>
                     <tr key={Number(parameter.id)}>
-                        <td>{parameter.softwareNumber}</td>
                         <td>{parameter.userLogin}</td>
                         <td>{parameter.softwareName}</td>
                         <td>{parameter.workstationsNumber}</td>
@@ -105,7 +103,6 @@ const CalculationParameters = () => {
                                 onClick={() => {
                                     setCalculationParameterId(parameter.id)
                                     setEldestCalculationParameterInformation({
-                                        softwareNumber: parameter.softwareNumber,
                                         softwareName: parameter.softwareName,
                                         workstationsNumber: parameter.workstationsNumber,
                                         downloadLink: parameter.downloadLink,

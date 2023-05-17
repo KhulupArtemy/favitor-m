@@ -3,7 +3,7 @@ import {Button, Form, Modal} from "react-bootstrap";
 import {getRegistrationKey} from "../../http/calculationParameterAPI";
 
 
-const GetKey = ({show, onHide, softwareNumber, userId, workstationsNumber, keyExpirationDate}) => {
+const GetKey = ({show, onHide, programId, userId, workstationsNumber, keyExpirationDate}) => {
     const [serialNumber, setSerialNumber] = useState('')
     const [registrationKey, setRegistrationKey] = useState('')
 
@@ -15,7 +15,7 @@ const GetKey = ({show, onHide, softwareNumber, userId, workstationsNumber, keyEx
     const calculateKey = async () => {
         try {
             await getRegistrationKey({
-                softwareNumber,
+                programId,
                 userId,
                 workstationsNumber,
                 keyExpirationDate,

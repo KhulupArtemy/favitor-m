@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container} from "react-bootstrap";
+import {Telephone} from "react-bootstrap-icons";
 
 const Contacts = () => {
     return (
@@ -25,24 +26,26 @@ const Contacts = () => {
                 <p className="lead">понедельник - пятница с 9-00 до 18-00, суббота, воскресенье - выходной.</p>
             </div>
             <div className="mt-4">
-                <h1 className="fw-light">Телефон</h1>
+                <h1 className="fw-light">Телефоны</h1>
                 <p className="lead">Velcom:</p>
-                <ul className="lead">
-                    <li>+375 (29) 683-83-31</li>
+                <ul className="lead p-0" style={{listStyleType: "none"}}>
+                    <li><Telephone/> +375 (29) 683-83-31</li>
                 </ul>
                 <p className="lead">МТС:</p>
-                <ul className="lead">
-                    <li>+375 (29) 864-48-61</li>
-                    <li>+375 (29) 858-96-01</li>
-                    <li>+375 (29) 864-40-00</li>
-                    <li>+375 (29) 864-52-28</li>
-                    <li>+375 (29) 864-12-45</li>
-                    <li>+375 (29) 864-57-15</li>
+                <ul className="lead p-0" style={{listStyleType: "none"}}>
+                    <li><Telephone/> +375 (29) 864-48-61</li>
+                    <li><Telephone/> +375 (29) 858-96-01</li>
+                    <li><Telephone/> +375 (29) 864-40-00</li>
+                    <li><Telephone/> +375 (29) 864-52-28</li>
+                    <li><Telephone/> +375 (29) 864-12-45</li>
+                    <li><Telephone/> +375 (29) 864-57-15</li>
                 </ul>
             </div>
             <div className="mt-4">
                 <h1 className="fw-light">E-mail</h1>
-                <a href="http://mail.active.by">support@favitor-m.by</a>
+                <p>
+                    <a className="lead" href="mailto:support@favitor-m.by">support@favitor-m.by</a>
+                </p>
             </div>
         </Container>
     );

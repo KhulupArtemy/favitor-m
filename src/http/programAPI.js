@@ -15,8 +15,13 @@ export const createAfterProgram = async (program) => {
     return data
 }
 
-export const fetchPrograms = async (programCategoryId) => {
-    const {data} = await $host.get('api/program/getAll/' + programCategoryId)
+export const fetchProgramsSelectedCategory = async (programCategoryId) => {
+    const {data} = await $host.get('api/program/getProgramsSelectedCategory/' + programCategoryId)
+    return data
+}
+
+export const fetchPrograms = async () => {
+    const {data} = await $authHost.get('api/program/getPrograms')
     return data
 }
 

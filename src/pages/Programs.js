@@ -8,7 +8,7 @@ import CreateLastProgram from "../components/modals/CreateLastProgram";
 import CreateAfterProgram from "../components/modals/CreateAfterProgram";
 import UpdateOneProgram from "../components/modals/UpdateOneProgram";
 import DeleteOneProgram from "../components/modals/DeleteOneProgram";
-import {fetchPrograms} from "../http/programAPI";
+import {fetchProgramsSelectedCategory} from "../http/programAPI";
 
 const Programs = observer(() => {
     const {user, categories} = useContext(Context)
@@ -25,7 +25,7 @@ const Programs = observer(() => {
     const [eldestProgramInformation, setEldestProgramInformation] = useState({})
 
     useEffect(() => {
-        fetchPrograms(programCategoryId).then(data => setPrograms(data))
+        fetchProgramsSelectedCategory(programCategoryId).then(data => setPrograms(data))
     }, [programCategoryId,
         createFirstProgramVisible,
         createLastProgramVisible,
@@ -65,7 +65,7 @@ const Programs = observer(() => {
                     </div>
                     : ''
                 :
-                <p className="mt-4 lead">Авторизуйтесь на сайте чтобы скачивать программы в личном кабинете</p>
+                <div className="mt-4 lead">Авторизуйтесь на сайте чтобы скачивать программы в личном кабинете</div>
             }
             <Table className="mt-4 lead" responsive striped bordered>
                 <thead>

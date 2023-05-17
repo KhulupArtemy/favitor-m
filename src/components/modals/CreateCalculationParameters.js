@@ -2,33 +2,34 @@ import React, {useEffect, useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 import {fetchUserLogins} from "../../http/userAPI";
 import {createCalculationParameters} from "../../http/calculationParameterAPI";
+import {fetchPrograms} from "../../http/programAPI";
 
 const CreateCalculationParameters = ({show, onHide}) => {
     const [logins, setLogins] = useState([])
+    const [programs, setPrograms] = useState([])
 
     const [userLogin, setUserLogin] = useState('')
-    const [softwareNumber, setSoftwareNumber] = useState('')
     const [softwareName, setSoftwareName] = useState('')
+
     const [workstationsNumber, setWorkstationsNumber] = useState('')
     const [downloadLink, setDownloadLink] = useState('')
     const [keyExpirationDate, setKeyExpirationDate] = useState('')
 
     useEffect(() => {
         fetchUserLogins().then(data => setLogins(data))
+        fetchPrograms().then(data => setPrograms(data))
     }, [show])
 
     const addCalculationParameters = async () => {
         try {
             await createCalculationParameters({
                 userLogin,
-                softwareNumber,
                 softwareName,
                 workstationsNumber,
                 downloadLink,
                 keyExpirationDate
             }).then(data => alert(data))
             setUserLogin('')
-            setSoftwareNumber('')
             setSoftwareName('')
             setWorkstationsNumber('')
             setKeyExpirationDate('')
@@ -65,19 +66,18 @@ const CreateCalculationParameters = ({show, onHide}) => {
                             <option key={login.userLogin} value={login.userLogin}></option>
                         ))}
                     </datalist>
-                    <Form.Label className="mt-3">Введите номер программного обеспечения</Form.Label>
+                    <Form.Label className="mt-3">Выберите название программного обеспечения</Form.Label>
                     <Form.Control
-                        value={softwareNumber}
-                        onChange={e => e.target.value < 1 ? setSoftwareNumber('1') : setSoftwareNumber(e.target.value)}
-                        placeholder="Поле для ввода номера"
-                        type="number"
-                    />
-                    <Form.Label className="mt-3">Введите название программного обеспечения</Form.Label>
-                    <Form.Control
+                        list="programs"
                         value={softwareName}
                         onChange={e => setSoftwareName(e.target.value)}
                         placeholder="Поле для ввода названия"
                     />
+                    <datalist id="programs">
+                        {Object(programs.map(program =>
+                            <option key={program.softwareName} value={program.softwareName}></option>
+                        ))}
+                    </datalist>
                     <Form.Label className="mt-3">Введите количество АРМ</Form.Label>
                     <Form.Control
                         value={workstationsNumber}

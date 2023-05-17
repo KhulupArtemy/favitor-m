@@ -8,7 +8,7 @@ const PersonalAccount = () => {
 
     const [getKeyVisible, setGetKeyVisible] = useState(false)
 
-    const [softwareNumber, setSoftwareNumber] = useState('')
+    const [programId, setProgramId] = useState('')
     const [userId, setUserId] = useState('')
     const [workstationsNumber, setWorkstationsNumber] = useState('')
     const [keyExpirationDate, setKeyExpirationDate] = useState('')
@@ -27,7 +27,6 @@ const PersonalAccount = () => {
                 {calculationParameters.length
                     ?
                     <tr>
-                        <th>№</th>
                         <th>Наименование программного продукта</th>
                         <th>Количество АРМ</th>
                         <th>Дата действия ключа</th>
@@ -43,7 +42,6 @@ const PersonalAccount = () => {
                 <tbody>
                 {calculationParameters.map(parameter =>
                     <tr key={Number(parameter.id)}>
-                        <td>{parameter.softwareNumber}</td>
                         <td>{parameter.softwareName}</td>
                         <td>{parameter.workstationsNumber}</td>
                         <td>{new Date(parameter.keyExpirationDate).toLocaleDateString()}</td>
@@ -61,7 +59,7 @@ const PersonalAccount = () => {
                             <div
                                 style={{cursor: "pointer"}}
                                 onClick={() => {
-                                    setSoftwareNumber(parameter.softwareNumber)
+                                    setProgramId(parameter.programId)
                                     setUserId(parameter.userId)
                                     setWorkstationsNumber(parameter.workstationsNumber)
                                     setKeyExpirationDate(new Date(parameter.keyExpirationDate).toLocaleDateString())
@@ -78,7 +76,7 @@ const PersonalAccount = () => {
             <GetKey
                 show={getKeyVisible}
                 onHide={() => setGetKeyVisible(false)}
-                softwareNumber={softwareNumber}
+                programId={programId}
                 userId={userId}
                 workstationsNumber={workstationsNumber}
                 keyExpirationDate={keyExpirationDate}

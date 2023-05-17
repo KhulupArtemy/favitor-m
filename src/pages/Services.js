@@ -20,10 +20,10 @@ const Services = () => {
                     <li>Обучение персонала работе с ПО.</li>
                     <li>Сопровождение, поддержка и развитие ПО.</li>
                 </ul>
-                <p>
+                <div>
                     Помимо основных видов деятельности мы оказываем следующие услуги:
-                </p>
-                <Table className="mt-2" responsive striped bordered>
+                </div>
+                <Table className="mt-4" responsive striped bordered>
                     <thead>
                         <tr>
                             <th>№ п.п.</th>
